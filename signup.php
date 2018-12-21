@@ -1,12 +1,11 @@
-<?php 
-session_start();
-
+<?php
+include "core/loggedinstatus.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="manifest" href="manifest.json">
     <title>Signup</title>
@@ -96,8 +95,12 @@ session_start();
         <div>
             <input type="submit" value="Signup" name="submit">
         </div>
-        
+        <div style="margin-top: 30px; font-size: 16px;">
+            Already have an account? <a href="login.php" style="text-decoration: none;color:dodgerblue;">Login here</a>
+        </div>    
     </form>
+
+    
     <script src="app.js"></script>
     <script>
     let form = getId("signup-form");
@@ -105,13 +108,10 @@ session_start();
     form.onsubmit = function(e) {
         let email = getId("email").value;
         if(!validateEmail(email)){
-            alert("invalid email address")
+            alert("Invalid email address \nEnter a valid Email address")
             e.preventDefault();
         }
     }    
-    if(window.location.href.match("error")){
-        alert("ENTER A VALID EMAIL ADDRESS");
-    }
     </script>
 </body>
 </html>

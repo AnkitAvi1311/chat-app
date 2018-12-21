@@ -12,17 +12,17 @@ if (navigator.serviceWorker.controller) {
     });
   }
   
-function getId(id) {
+function getId(id) {    // returning element by id
     return document.getElementById(id);
 }  
 
-function getTarget(e) {
+function getTarget(e) { // function to return the event target
     if(!e) {
         e = window.event;
     }
     return e.target || e.srcElement;
 } 
-// function to validate email address
+// function to validate email address on the client side
 function validateEmail(email) {
     let reg = /^([a-zA-Z0-9\.\-_]+)\@([[a-zA-Z0-9\.\-_]+)\.([a-zA-Z]{2,4})$/;
     if(reg.test(email)){
@@ -31,3 +31,19 @@ function validateEmail(email) {
         return false;
     }
 }
+
+// AJAX request for sending email to reset the password
+function sendForgetEmail() {
+    let xhr = new XMLHttpRequest() || new ActiveXObject("Microsoft.XMLHTTP");
+    xhr.onreadystatechange = function() {
+        if(xhr.readyState == 4 && xhr.status == 200) {
+            alert(xhr.responseText);
+        }
+    }
+    xhr.open("POST", "models/sendForgetEmail.php", true);
+    xhr.send(null);
+}
+
+window.addEventListener('resize', function(e) {
+    e.preventDefault();
+});

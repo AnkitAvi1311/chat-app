@@ -29,7 +29,18 @@ if(!isset($_SESSION['user'])){
     <h1>User Logged in</h1>
     <h3><?php echo $user['id']; ?></h3>
     <h3><?php echo $user['fname']; ?></h3>
-    <h3><?php echo $user['email']; ?></h3>
+    <a href="logout.php">Logout</a> </br>
+    <input type="email" id="email" placeholder="Enter email">
+    <button id="send">Add Friend</button>
     
+    <script src="app.js"></script>
+    <script>
+        let button = getId("send");
+        button.onclick = function() {
+            console.log("hello world");
+            let email = getId("email").value;
+            sendRequest(email);
+        }
+    </script>
 </body>
 </html>

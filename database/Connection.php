@@ -9,8 +9,6 @@ class Connection {
         @$this->conn = new mysqli($servername, $username, $password, $dbname);
         if($this->conn->connect_error) {
             echo "Connection failed : <b>".$this->conn->connect_error."</b>";
-        }else{
-            echo "Connection established";
         }
     }
 

@@ -47,3 +47,24 @@ function sendForgetEmail() {
 window.addEventListener('resize', function(e) {
     e.preventDefault();
 });
+
+// xhr function to send request 
+function createXHR() {
+    if(XMLHttpRequest){
+        return new XMLHttpRequest();
+    }else{
+        return new ActiveXObject("Microsoft.XMLHTTP");
+    }
+}
+function sendRequest(email) {
+    let xhr = createXHR();
+    xhr.onreadystatechange = function() {
+        if(xhr.readyState == 4 && xhr.status == 200) {
+            let res = xhr.responseText;
+            alert(res);
+        }
+    }
+    xhr.open("POST", "models/sendRequest.php", true);
+    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhr.send("email="+email);
+}
